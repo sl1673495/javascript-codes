@@ -75,3 +75,23 @@ let convert = list => {
 }
 
 console.log(convert(list))
+
+/**
+ * 大数据量
+    list = []
+    for (let i = 0; i < 100; i++) {
+    list.push({ name: `层级${i}` })
+    }
+
+    for (let i = 0; i < 10000; i++) {
+    let pl = i % 100
+    list.push({ parent_ind: `层级${pl}`, name: `层级${pl}-${i}` })
+    }
+
+    for (let i = 0; i < 10000; i++) {
+    let ppl = i % 100
+    list.push({ parent_ind: `层级${ppl}-${i}`, name: `层级${ppl}-${i}-${i}` })
+    }
+
+    list.sort((a, b) => Math.random() - 0.5)
+ */
