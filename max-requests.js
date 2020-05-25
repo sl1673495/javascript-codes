@@ -26,8 +26,9 @@ const multiRequest = (urls, max = 1) => {
         reject(error)
       }
 
+      console.log('res: ', res);
       res[idx] = url
-
+      
       // 请求
       finished++
       if (finished === urls.length) {

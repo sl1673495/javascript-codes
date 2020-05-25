@@ -1,0 +1,35 @@
+<div class="container">
+    <div class="left"></div>
+    <div class="right"></div>
+</div>
+
+<style>
+  * {
+    padding: 0;
+    margin: 0;
+  }
+  .container {
+    width: 100px;
+    height: 300px;
+    display: flex;
+  }
+  .left {
+    flex: 1 2 50px;
+    background: red;
+  }
+  .right {
+    flex: 2 1 100px;
+    background: blue;
+  }
+
+  /* 
+    flex-shrink 计算时元素时的权重是 shrink * width
+    计算单个元素收缩值：溢出值 * 元素权重(shrink * width) / 总权重(shrink * width)
+
+    总权重是 500 * 2 + 400 * 1 = 1400
+    溢出值是 500 + 400 - 600 = 300
+
+    left的收缩值为：300(溢出) * 2(shrink) * 500(宽度) / 1400
+    right的收缩值为：300(溢出) * 1(shrink) * 400(宽度) / 1400
+   */
+</style>
