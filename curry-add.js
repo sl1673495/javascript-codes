@@ -1,6 +1,10 @@
 function add(...nums) {
   let res = sum(nums);
 
+  queueMicrotask(() => {
+    console.log(res)
+  })
+
   function sum(nums) {
     return nums.reduce((a, b) => a + b);
   }
@@ -14,4 +18,4 @@ function add(...nums) {
   };
 }
 
-add(5, 4)(3, 2)(1)();
+add(5, 4)(3, 2)(1)(3);
