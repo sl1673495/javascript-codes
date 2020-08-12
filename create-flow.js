@@ -1,30 +1,31 @@
 /**
-const log = jest.fn();
-const subFlow = createFlow([() => log('subFlow')]),
+  蚂蚁金服面试题
+  const log = jest.fn();
+  const subFlow = createFlow([() => log('subFlow')]),
 
-createFlow([
-  () => log('a'),
-  () => log('b'),
-subFlow,
-  [
-    () => delay().then(() => log('c')),
-    () => log('d'),
-  ]
-]).run(null, () => {
-  expect(log.mock.calls[0][0]).toBe('a')
-  expect(log.mock.calls[1][0]).toBe('b')
-  expect(log.mock.calls[2][0]).toBe('subFlow')
-  expect(log.mock.calls[3][0]).toBe('c')
-  expect(log.mock.calls[4][0]).toBe('d')
-})
+  createFlow([
+    () => log('a'),
+    () => log('b'),
+  subFlow,
+    [
+      () => delay().then(() => log('c')),
+      () => log('d'),
+    ]
+  ]).run(null, () => {
+    expect(log.mock.calls[0][0]).toBe('a')
+    expect(log.mock.calls[1][0]).toBe('b')
+    expect(log.mock.calls[2][0]).toBe('subFlow')
+    expect(log.mock.calls[3][0]).toBe('c')
+    expect(log.mock.calls[4][0]).toBe('d')
+  })
 
 
 
-按照上面的测试用例，实现 createFlow：
+  按照上面的测试用例，实现 createFlow：
 
-flow 是指一些列 effects（这里是普通的函数）组成的逻辑片段
-flow 支持嵌套
-effects 的执行只需要支持串行
+  flow 是指一些列 effects（这里是普通的函数）组成的逻辑片段
+  flow 支持嵌套
+  effects 的执行只需要支持串行
 */
 
 function createFlow(effects = []) {
