@@ -17,7 +17,7 @@ const parse = (html) => {
           // End of tag
           const [endTag] = /<\/.*?>/.exec(str)
           go(endTag.length)
-          continue
+          break
         }
       } else {
         node = parseText()
@@ -116,8 +116,4 @@ const parse = (html) => {
   return parseChildren()
 }
 
-console.log(
-  JSON.stringify(
-    parse("<div class='a b c' data-name=test><span>asd</span></div>")
-  )
-)
+console.log(JSON.stringify(parse("<div>asd<span>asd</span>asd</div>")))
