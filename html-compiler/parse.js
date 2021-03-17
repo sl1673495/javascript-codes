@@ -116,4 +116,4 @@ const parse = (html) => {
   return parseChildren()
 }
 
-console.log(JSON.stringify(parse("<div>asd<span>asd</span>asd</div>")))
+console.log(JSON.stringify(parse("<div>asd<span>asd</span>asd</div>"), undefined, 2))
