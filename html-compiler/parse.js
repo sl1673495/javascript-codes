@@ -64,7 +64,7 @@ const parse = (html) => {
     const attrs = {}
     goSpaces()
 
-    while (!str.startsWith(">") && !str.startsWith("/>")) {
+    while (!str.startsWith(">")) {
       const matchName = /(.*?)=/.exec(str)
       const [rawName, name] = matchName
       go(rawName.length)
