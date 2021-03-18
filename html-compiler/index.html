@@ -5,31 +5,34 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-  </head>
-  <body>
     <script type="module">
       import { parse } from "./parse.js"
       import { transform } from "./transform.js"
-      import { generate } from './generate.js'
+      import { generate } from "./generate.js"
 
-      const ast = parse(
-        "<div class='foo bar'>你好<span c=2>再见</span>asd</div>"
-      )
+      const appNode = document.getElementById("app")
 
-      transform(ast, {
-        tag(node) {
-          const children = node?.children ?? []
-          children.forEach((node) => {
-            console.log("node: ", node)
-            if (node.type === "text") {
-              node.value = translate(node.value)
-            }
-          })
-        },
-      })
+      function translateHtml() {
+        const rawHtml = appNode.innerHTML
 
-      const html = generate(ast)
-      console.log('html: ', html);
+        const ast = parse(rawHtml)
+
+        transform(ast, {
+          tag(node) {
+            const children = node?.children ?? []
+            children.forEach((node) => {
+              console.log("node: ", node)
+              if (node.type === "text") {
+                node.value = translate(node.value)
+              }
+            })
+          },
+        })
+
+        const html = generate(ast)
+
+        appNode.innerHTML = html
+      }
 
       // 翻译文本节点
       function translate(text) {
@@ -39,6 +42,14 @@
         }
         return translateMap[text] ?? text
       }
+
+      window.translateHtml = translateHtml
     </script>
+  </head>
+  <body>
+    <div id="app">
+      <div class="foo bar">你好<span c="2">再见</span></div>
+    </div>
+    <button onclick="translateHtml()">翻译</button>
   </body>
 </html>
