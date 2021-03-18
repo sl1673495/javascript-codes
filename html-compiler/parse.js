@@ -1,4 +1,4 @@
-const parse = (html) => {
+export const parse = (html) => {
   let str = html
 
   function parseChildren() {
@@ -113,7 +113,16 @@ const parse = (html) => {
     str = str.slice(len)
   }
 
-  return parseChildren()
+  return {
+    type: "root",
+    children: parseChildren(),
+  }
 }
 
-console.log(JSON.stringify(parse("<div>asd<span>asd</span>asd</div>"), undefined, 2))
+console.log(
+  JSON.stringify(
+    parse("<div class='foo bar'>asd<span c=2>asd</span>asd</div>"),
+    undefined,
+    2
+  )
+)

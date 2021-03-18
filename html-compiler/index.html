@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script type="module">
+      import { parse } from "./parse.js"
+      import { transform } from "./transform.js"
+      import { generate } from './generate.js'
+
+      const ast = parse(
+        "<div class='foo bar'>你好<span c=2>再见</span>asd</div>"
+      )
+
+      transform(ast, {
+        tag(node) {
+          const children = node?.children ?? []
+          children.forEach((node) => {
+            console.log("node: ", node)
+            if (node.type === "text") {
+              node.value = translate(node.value)
+            }
+          })
+        },
+      })
+
+      const html = generate(ast)
+      console.log('html: ', html);
+
+      // 翻译文本节点
+      function translate(text) {
+        const translateMap = {
+          你好: "Hello",
+          再见: "Bye",
+        }
+        return translateMap[text] ?? text
+      }
+    </script>
+  </body>
+</html>
