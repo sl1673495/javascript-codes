@@ -118,11 +118,3 @@ export const parse = (html) => {
     children: parseChildren(),
   }
 }
-
-console.log(
-  JSON.stringify(
-    parse("<div class='foo bar'>asd<span c=2>asd</span>asd</div>"),
-    undefined,
-    2
-  )
-)
